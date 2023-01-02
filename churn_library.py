@@ -55,31 +55,32 @@ def perform_eda(data):
     # check for class imbalance and save chart image
     plt.figure(figsize=(20, 10))
     data['Churn'].hist()
-    plt.savefig('./images/Churn_hist.png')
+    plt.savefig('./images/eda/Churn_hist.png')
     plt.close()
 
     # check Customer_Age distribution and save chart image
     plt.figure(figsize=(20, 10))
     data['Customer_Age'].hist()
-    plt.savefig('./images/customer_age_hist.png')
+    plt.savefig('./images/eda/customer_age_hist.png')
     plt.close()
 
     # check Marital_Status distribution and save chart image
     plt.figure(figsize=(20, 10))
     data.Marital_Status.value_counts('normalize').plot(kind='bar')
-    plt.savefig('./images/marital_status_hist.png')
+    plt.savefig('./images/eda/marital_status_hist.png')
     plt.close()
 
     # check distribution of TOtal_Trans_ct variable and save chart image
     plt.figure(figsize=(20, 10))
     sns.distplot(data['Total_Trans_Ct'], kde=True)
-    plt.savefig('./images/Total_Trans_Ct_.png')
+    plt.savefig('./images/eda/Total_Trans_Ct_distribution.png')
     plt.close()
 
     # check bivariate distribution with heatmap
     plt.figure(figsize=(20, 10))
     sns.heatmap(data.corr(), annot=False, cmap='Dark2_r', linewidths=2)
-    plt.savefig('./images/data_correlation_heatmap.png')
+    plt.savefig('./images/eda/data_correlation_heatmap.png')
+    plt.close()
 
     return data
 
@@ -228,7 +229,7 @@ def train_models(X_train, X_test, y_train, y_test):
     feature_importance_plot(
         model=cv_rfc,
         X_data=X_test,
-        output_pth='./images/cv_rfc_model_feature_importance.png')
+        output_pth='./images/results/cv_rfc_model_feature_importance.png')
 
     # roc curve plots for random forest and logistic regression
     roc_plot(cv_rfc.best_estimator_, X_test, y_test)
@@ -266,7 +267,7 @@ def classification_report_image(y_train,
     plt.text(0.01, 0.7, str(classification_report(y_train, y_train_preds_rf)),
              {'fontsize': 10}, fontproperties='monospace')
     plt.axis('off')
-    plt.savefig('./images/classification_report_random_forest.png')
+    plt.savefig('./images/results/classification_report_random_forest.png')
     plt.close()
 
     # classification report for logistic regression model save to image file
@@ -280,7 +281,7 @@ def classification_report_image(y_train,
     plt.text(0.01, 0.7, str(classification_report(y_test, y_test_preds_lr)),
              {'fontsize': 10}, fontproperties='monospace')
     plt.axis('off')
-    plt.savefig('./images/classification_report_logistic_regression.png')
+    plt.savefig('./images/results/classification_report_logistic_regression.png')
     plt.close()
 
 
@@ -340,7 +341,7 @@ def roc_plot(model, data, y_test):
     # show the legend
     plt.legend()
     # save the plot
-    plt.savefig('./images/roc_curve_' + type(model).__name__ + '.png')
+    plt.savefig('./images/results/roc_curve_' + type(model).__name__ + '.png')
 
 
 if __name__ == '__main__':

@@ -59,11 +59,11 @@ def test_eda():
     try:
         # check that eda files were created
         assert os.path.exists('./data/nulls_check.csv')
-        assert os.path.exists('./images/Churn_hist.png')
-        assert os.path.exists('./images/customer_age_hist.png')
-        assert os.path.exists('./images/data_correlation_heatmap.png')
-        assert os.path.exists('./images/marital_status_hist.png')
-        assert os.path.exists('./images/Total_Trans_Ct_distribution.png')
+        assert os.path.exists('./images/eda/Churn_hist.png')
+        assert os.path.exists('./images/eda/customer_age_hist.png')
+        assert os.path.exists('./images/eda/data_correlation_heatmap.png')
+        assert os.path.exists('./images/eda/marital_status_hist.png')
+        assert os.path.exists('./images/eda/Total_Trans_Ct_distribution.png')
         logging.info('perform_eda: SUCCESS - checking for eda result files')
     except AssertionError as err:
         logging.warning('WARNING: some or all eda result files not created')
@@ -168,9 +168,9 @@ def test_train_models():
     try:
         # check for classification report image files
         assert os.path.exists(
-            './images/classification_report_logistic_regression.png')
+            './images/results/classification_report_logistic_regression.png')
         assert os.path.exists(
-            './images/classification_report_random_forest.png')
+            './images/results/classification_report_random_forest.png')
         logging.info('train_models - 2 classification reports found: SUCCESS')
     except AssertionError as err:
         logging.error('train_models - classification report(s) missing')
@@ -178,7 +178,7 @@ def test_train_models():
 
     try:
         # check for feature importance image file
-        assert os.path.exists('./images/cv_rfc_model_feature_importance.png')
+        assert os.path.exists('./images/results/cv_rfc_model_feature_importance.png')
         logging.info('train_models - feature importance report found: SUCCESS')
     except AssertionError as err:
         logging.error('train_models - feature importance report missing')
@@ -186,7 +186,7 @@ def test_train_models():
 
     try:
         # check roc curve reports were created
-        assert os.path.exists('./images/roc_curve_LogisticRegression.png')
+        assert os.path.exists('./images/results/roc_curve_LogisticRegression.png')
         logging.info(
             'train_models - logistic regression roc report found: SUCCESS')
     except AssertionError as err:
@@ -195,7 +195,7 @@ def test_train_models():
 
     try:
         # check random forest curve report was created
-        assert os.path.exists('./images/roc_curve_RandomForestClassifier.png')
+        assert os.path.exists('./images/results/roc_curve_RandomForestClassifier.png')
         logging.info('train_models - random forest roc report found: SUCCESS')
     except AssertionError as err:
         logging.error('train_models - random forest roc report missing')
